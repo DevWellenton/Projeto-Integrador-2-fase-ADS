@@ -20,12 +20,18 @@ abstract public class dao<T> {
         Dados.getManager().remove(object);
         Dados.getManager().getTransaction().commit();
     }
-    public T read(Class<T> classtoReturn, int id){
-        return (Dados.getManager().find(classtoReturn, id));
+    public T read(Class<T> classToReturn, int id){
+        return Dados.getManager().find(classToReturn, id);
     }
-    //
-    public List<T> read(String jpql){
-        Query query = Dados.getManager().createQuery(jpql);
-        return query.getResultList();
+    public List<T> read(String JPQL){        
+        Query query = Dados.getManager().createQuery(JPQL);
+        return query.getResultList();                
+    }
+    public List<T> read(String JPQL,Object... args){        
+        Query query = Dados.getManager().createQuery(JPQL);
+        for(int i=0;i<args.length;i++){
+            query.setParameter((i+1), args[i]);
+        }
+        return query.getResultList();                
     }
 }
