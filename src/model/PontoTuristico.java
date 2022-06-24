@@ -52,7 +52,7 @@ public class PontoTuristico implements java.io.Serializable{
         this.endereco = endereco.trim().isEmpty()?"NOADRESS":endereco.toUpperCase();
     }
     public void setDescricao(String descricao) {
-        this.descricao = descricao.trim().isEmpty()?"NODESCRIPTION":descricao.toUpperCase();;
+        this.descricao = descricao.trim().isEmpty()?"NODESCRIPTION":descricao.toUpperCase();
     }
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
