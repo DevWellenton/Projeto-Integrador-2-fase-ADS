@@ -10,7 +10,7 @@ public class Dados {
     //
     public static EntityManager getManager(){
         if(manager==null){
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory("revisaoJPAPU");//entre parenteses é o nome do Persistence Unit name
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPontoTurismoPU");//entre parenteses é o nome do Persistence Unit name
             manager = factory.createEntityManager();
         }
         return manager;

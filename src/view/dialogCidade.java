@@ -106,6 +106,7 @@ public class dialogCidade extends javax.swing.JDialog {
         jLabel3.setText("NOME");
 
         buttonFiltrar.setBackground(new java.awt.Color(0, 153, 255));
+        buttonFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filtering.png"))); // NOI18N
         buttonFiltrar.setText("Filtrar");
         buttonFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +167,7 @@ public class dialogCidade extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -185,6 +186,7 @@ public class dialogCidade extends javax.swing.JDialog {
         });
 
         buttonNovo.setBackground(new java.awt.Color(0, 153, 255));
+        buttonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
         buttonNovo.setText("Novo");
         buttonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +195,7 @@ public class dialogCidade extends javax.swing.JDialog {
         });
 
         buttonSalvar.setBackground(new java.awt.Color(0, 204, 51));
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/diskette.png"))); // NOI18N
         buttonSalvar.setText("Salvar");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +204,7 @@ public class dialogCidade extends javax.swing.JDialog {
         });
 
         buttonRemover.setBackground(new java.awt.Color(255, 0, 0));
+        buttonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/recycle-bin.png"))); // NOI18N
         buttonRemover.setText("Remover");
         buttonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +235,7 @@ public class dialogCidade extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
