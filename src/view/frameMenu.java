@@ -44,14 +44,14 @@ public class frameMenu extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listComentario = new javax.swing.JList<>();
+        listComentario = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         itemPontoTuristico = new javax.swing.JMenuItem();
         itemCidade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Oficina 3.0");
+        setTitle("Eos");
 
         jLabel1.setText("Nome Ponto Turístico");
 
@@ -59,14 +59,23 @@ public class frameMenu extends javax.swing.JFrame {
 
         jLabel2.setText("Endereço Ponto Turístico");
 
+        textEndereco.setEditable(false);
+
         jLabel3.setText("Cidade Ponto Turístico");
 
         jLabel4.setText("Estado Ponto Turístico");
 
+        textCidade.setEditable(false);
+
+        textEstado.setEditable(false);
+
         jLabel5.setText("Valor Tarifa");
+
+        textTarifa.setEditable(false);
 
         jLabel6.setText("Descrição Tarifa");
 
+        textAreaTarifa.setEditable(false);
         textAreaTarifa.setColumns(20);
         textAreaTarifa.setRows(5);
         jScrollPane1.setViewportView(textAreaTarifa);
@@ -279,7 +288,7 @@ public class frameMenu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JList<String> listComentario;
+    private javax.swing.JList listComentario;
     private javax.swing.JTextArea textAreaTarifa;
     private javax.swing.JTextField textCidade;
     private javax.swing.JTextField textEndereco;
