@@ -42,7 +42,7 @@ public class frameMenu extends javax.swing.JFrame {
                 textNomeUsuario.getText().isEmpty()?"SEM NOME" : (textNomeUsuario.getText()),
                 textAreaComentario.getText().isEmpty()? "SEM COMENTÁRIO" : (textAreaComentario.getText()),
                 (PontoTuristico)comboNomePontoTuristico.getSelectedItem(),
-                (PontoTuristico)comboNota.getSelectedItem()        
+                Integer.parseInt(comboNota.getSelectedItem().toString()) //rever este ponto
         );
     }
     //4-atualiza componentes de tela
