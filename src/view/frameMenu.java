@@ -5,6 +5,7 @@ import controller.daoAvaliacao;
 import controller.daoPontoTuristico;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Avaliacao;
 import model.PontoTuristico;
@@ -408,7 +409,8 @@ public class frameMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameMenu().setVisible(true);
+                //new frameMenu().setVisible(true);
+                frameMenu tela = new frameMenu(); tela.setExtendedState(JFrame.MAXIMIZED_BOTH); tela.show();
             }
         });
     }
