@@ -1,9 +1,12 @@
 
 package view;
 
+import controller.daoAvaliacao;
+import controller.daoPontoTuristico;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Avaliacao;
 import model.PontoTuristico;
 
 
@@ -17,7 +20,7 @@ public class frameMenu extends javax.swing.JFrame {
     }
     //
     //1-criar o dao
-/*    private daoMenu dao = new daoMenu();
+    private daoAvaliacao dao = new daoAvaliacao();
     
     //2-inicializa componentes
     private void clearComponents(){
@@ -33,43 +36,41 @@ public class frameMenu extends javax.swing.JFrame {
         
     }
     //3-monta um objeto com valores da tela
-    private Menu createMenu(){
-        return new Menu(
+    private Avaliacao createAvaliacao(){
+        return new Avaliacao(
+                textCodigoUsuario.getText().isEmpty()? 0 : Integer.parseInt(textCodigoUsuario.getText()),
+                textNomeUsuario.getText().isEmpty()?"SEM NOME" : (textNomeUsuario.getText()),
+                textAreaComentario.getText().isEmpty()? "SEM COMENTÁRIO" : (textAreaComentario.getText()),
                 (PontoTuristico)comboNomePontoTuristico.getSelectedItem(),
-                (PontoTuristico)comboNota.getSelectedItem(),
-                textAreaComentario.getText().isEmpty()? "SEM COMENTÁRIO" : (textAreaComentario.getText())        
+                (PontoTuristico)comboNota.getSelectedItem()        
         );
     }
     //4-atualiza componentes de tela
-    private void fillComponents(Menu menu){
-        comboNomePontoTuristico.setSelectedItem(menu.getNome());
-        textCodigo.setText(modelo.getId()+"");
-        textNome.setText(modelo.getNome());
-        comboMarca.setSelectedItem(modelo.getMarca());
+    private void fillComponents(Avaliacao avaliacao){
+        textCodigoUsuario.setText(avaliacao.getId()+"");
+        comboNomePontoTuristico.setSelectedItem(avaliacao.getPontoTuristico());
+        textNomeUsuario.setText(avaliacao.getNomeUsuario());
+        comboNota.setSelectedItem(avaliacao.getNota());
+        textAreaComentario.setText(avaliacao.getDescricao());
     }
-    //5-carregar combo marca
-    private void loadComboMarca(){
+    //5-carregar combos
+    private void loadComboNomePontoTuristico(){
         DefaultComboBoxModel cbm = 
-        new DefaultComboBoxModel(new daoMarca().read().toArray());
-        comboMarca.setModel(cbm);
+        new DefaultComboBoxModel(new daoPontoTuristico().read().toArray());
+        comboNomePontoTuristico.setModel(cbm);
+    }
+    private void loadComboNota(){
+        DefaultComboBoxModel cbm =
+        new DefaultComboBoxModel(new daoPontoTuristico().read().toArray());
+        comboNota.setModel(cbm);
     }
     //6-atualizar List
     private void loadList(){
         DefaultListModel lm = new DefaultListModel();
         lm.addAll(dao.read());
-        listModelo.setModel(lm);        
+        listComentario.setModel(lm);        
     }
-    private void loadList(String filtro){
-        DefaultListModel lm = new DefaultListModel();
-        lm.addAll(dao.read(filtro));
-        listModelo.setModel(lm);        
-    }
-    private void loadList(Marca marca){
-        DefaultListModel lm = new DefaultListModel();
-        lm.addAll(dao.read(marca));
-        listModelo.setModel(lm);        
-    }
-*/ 
+ 
     //------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,8 +106,11 @@ public class frameMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         listComentario = new javax.swing.JList();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textNomeUsuario = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        textCodigoUsuario = new javax.swing.JTextField();
+        buttonSalvar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         itemPontoTuristico = new javax.swing.JMenuItem();
@@ -171,6 +175,23 @@ public class frameMenu extends javax.swing.JFrame {
 
         jLabel12.setText("Dê uma nota e faça um comentário do ponto turístico selecionado");
 
+        jLabel13.setText("Código Usuario");
+
+        textCodigoUsuario.setEditable(false);
+
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/diskette.png"))); // NOI18N
+        buttonSalvar.setText("Salvar");
+        buttonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonSalvarMouseClicked(evt);
+            }
+        });
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Cadastro");
 
         itemPontoTuristico.setText("Ponto Turístico");
@@ -199,59 +220,58 @@ public class frameMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textEndereco))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textEndereco))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textEstado)
+                            .addComponent(textCidade)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8))
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textEstado)
-                                    .addComponent(textCidade)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textMediaNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(22, 22, 22)
-                                .addComponent(comboNomePontoTuristico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                    .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textMediaNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(comboNomePontoTuristico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel11)
+                        .addGap(51, 51, 51)
+                        .addComponent(textNomeUsuario))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(51, 51, 51)
-                                .addComponent(jTextField1))
+                                .addComponent(jLabel13)
+                                .addGap(27, 27, 27)
+                                .addComponent(textCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboNota, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel12))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboNota, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(buttonSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +304,7 @@ public class frameMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMediaNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,10 +312,14 @@ public class frameMenu extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(textCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -304,6 +328,8 @@ public class frameMenu extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(buttonSalvar)
                 .addContainerGap())
         );
 
@@ -324,6 +350,34 @@ public class frameMenu extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
+
+    private void buttonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalvarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSalvarMouseClicked
+
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        // TODO add your handling code here:
+        if(textNomeUsuario.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nome obrigatório");
+            textNomeUsuario.requestFocus();
+            return;
+        }
+        try{
+            Avaliacao avaliacao = this.createAvaliacao(); //estou pegando oque tenho na tela e criando um objeto
+            if(textCodigoUsuario.getText().isEmpty()){  //testando se o registro é novo ou é um update
+                dao.create(avaliacao);
+                JOptionPane.showMessageDialog(null, "Avaliação salva.");
+            }else{ //uodate
+                dao.update(avaliacao);
+                JOptionPane.showMessageDialog(null, "Avaliação atualizada.");
+            }
+            //refresh após a ação
+            this.clearComponents(); // limpa os campos
+            this.loadList(); //recarrego a lista
+        }catch(Exception ex){
+
+        }
+    }//GEN-LAST:event_buttonSalvarActionPerformed
 
 
     public static void main(String args[]) {
@@ -360,6 +414,7 @@ public class frameMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonSalvar;
     private javax.swing.JComboBox<String> comboNomePontoTuristico;
     private javax.swing.JComboBox<String> comboNota;
     private javax.swing.JMenuItem itemCidade;
@@ -368,6 +423,7 @@ public class frameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -382,14 +438,15 @@ public class frameMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList listComentario;
     private javax.swing.JTextArea textAreaComentario;
     private javax.swing.JTextArea textAreaTarifa;
     private javax.swing.JTextField textCidade;
+    private javax.swing.JTextField textCodigoUsuario;
     private javax.swing.JTextField textEndereco;
     private javax.swing.JTextField textEstado;
     private javax.swing.JTextField textMediaNotas;
+    private javax.swing.JTextField textNomeUsuario;
     private javax.swing.JTextField textTarifa;
     // End of variables declaration//GEN-END:variables
 }

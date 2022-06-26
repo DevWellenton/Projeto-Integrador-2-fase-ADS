@@ -23,7 +23,9 @@ public class dialogCidade extends javax.swing.JDialog {
     
     //3 - Monta um objeto com valores da tela para poder emviar para a controller
     private Cidade createCidade(){
-        return new Cidade(textCodigo.getText().isEmpty()? 0 : Integer.parseInt(textCodigo.getText()), textNome.getText(),
+        return new Cidade(
+                textCodigo.getText().isEmpty()? 0 : Integer.parseInt(textCodigo.getText()), 
+                textNome.getText(),
                 (Estados)comboEstado.getSelectedItem()); //verifico se o textCOd
     }
     //4 - Atualiza os componentes da tela
