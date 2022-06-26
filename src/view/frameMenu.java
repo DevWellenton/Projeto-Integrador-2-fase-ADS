@@ -113,6 +113,8 @@ public class frameMenu extends javax.swing.JFrame {
         textCodigoUsuario = new javax.swing.JTextField();
         buttonSalvar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        itemAvaliacao = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         itemPontoTuristico = new javax.swing.JMenuItem();
         itemCidade = new javax.swing.JMenuItem();
@@ -129,6 +131,11 @@ public class frameMenu extends javax.swing.JFrame {
         jLabel1.setText("Nome Ponto Turístico");
 
         comboNomePontoTuristico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboNomePontoTuristico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNomePontoTuristicoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Endereço Ponto Turístico");
 
@@ -192,6 +199,13 @@ public class frameMenu extends javax.swing.JFrame {
                 buttonSalvarActionPerformed(evt);
             }
         });
+
+        jMenu2.setText("Home");
+
+        itemAvaliacao.setText("Avaliação");
+        jMenu2.add(itemAvaliacao);
+
+        jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Cadastro");
 
@@ -380,6 +394,10 @@ public class frameMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
+    private void comboNomePontoTuristicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomePontoTuristicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNomePontoTuristicoActionPerformed
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -409,8 +427,8 @@ public class frameMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new frameMenu().setVisible(true);
-                frameMenu tela = new frameMenu(); tela.setExtendedState(JFrame.MAXIMIZED_BOTH); tela.show();
+                new frameMenu().setVisible(true);
+                //frameMenu tela = new frameMenu(); tela.setExtendedState(JFrame.MAXIMIZED_BOTH); tela.show();
             }
         });
     }
@@ -419,6 +437,7 @@ public class frameMenu extends javax.swing.JFrame {
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JComboBox<String> comboNomePontoTuristico;
     private javax.swing.JComboBox<String> comboNota;
+    private javax.swing.JMenuItem itemAvaliacao;
     private javax.swing.JMenuItem itemCidade;
     private javax.swing.JMenuItem itemPontoTuristico;
     private javax.swing.JLabel jLabel1;
@@ -435,6 +454,7 @@ public class frameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
