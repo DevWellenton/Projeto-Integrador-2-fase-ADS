@@ -1,6 +1,19 @@
 
 package view;
 
+<<<<<<< Updated upstream
+=======
+import controller.daoAvaliacao;
+import controller.daoPontoTuristico;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Avaliacao;
+import model.PontoTuristico;
+
+
+>>>>>>> Stashed changes
 public class frameMenu extends javax.swing.JFrame {
 
     /**
@@ -10,7 +23,63 @@ public class frameMenu extends javax.swing.JFrame {
         initComponents();
     }
     //
+<<<<<<< Updated upstream
     
+=======
+    //1-criar o dao
+    private daoAvaliacao dao = new daoAvaliacao();
+    
+    //2-inicializa componentes
+    private void clearComponents(){
+        comboNomePontoTuristico.setSelectedIndex(0);
+        textEndereco.setText("");
+        textCidade.setText("");
+        textEstado.setText("");
+        textTarifa.setText("");
+        textAreaTarifa.setText("");
+        comboNota.setSelectedIndex(0);
+        textMediaNotas.setText("");
+        textAreaComentario.setText("");
+        
+    }
+    //3-monta um objeto com valores da tela
+    private Avaliacao createAvaliacao(){
+        return new Avaliacao(
+                textCodigoUsuario.getText().isEmpty()? 0 : Integer.parseInt(textCodigoUsuario.getText()),
+                textNomeUsuario.getText().isEmpty()?"SEM NOME" : (textNomeUsuario.getText()),
+                textAreaComentario.getText().isEmpty()? "SEM COMENTÁRIO" : (textAreaComentario.getText()),
+                (PontoTuristico)comboNomePontoTuristico.getSelectedItem(),
+                Integer.parseInt(comboNota.getSelectedItem().toString()) //rever este ponto
+        );
+    }
+    //4-atualiza componentes de tela
+    private void fillComponents(Avaliacao avaliacao){
+        textCodigoUsuario.setText(avaliacao.getId()+"");
+        comboNomePontoTuristico.setSelectedItem(avaliacao.getPontoTuristico());
+        textNomeUsuario.setText(avaliacao.getNomeUsuario());
+        comboNota.setSelectedItem(avaliacao.getNota());
+        textAreaComentario.setText(avaliacao.getDescricao());
+    }
+    //5-carregar combos
+    private void loadComboNomePontoTuristico(){
+        DefaultComboBoxModel cbm = 
+        new DefaultComboBoxModel(new daoPontoTuristico().read().toArray());
+        comboNomePontoTuristico.setModel(cbm);
+    }
+    private void loadComboNota(){
+        DefaultComboBoxModel cbm =
+        new DefaultComboBoxModel(new daoPontoTuristico().read().toArray());
+        comboNota.setModel(cbm);
+    }
+    //6-atualizar List
+    private void loadList(){
+        DefaultListModel lm = new DefaultListModel();
+        lm.addAll(dao.read());
+        listComentario.setModel(lm);        
+    }
+ 
+    //------------------------------
+>>>>>>> Stashed changes
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -20,9 +89,43 @@ public class frameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        comboNomePontoTuristico = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        textEndereco = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        textCidade = new javax.swing.JTextField();
+        textEstado = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        textTarifa = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaTarifa = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        comboNota = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        textMediaNotas = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaComentario = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listComentario = new javax.swing.JList();
+        jLabel11 = new javax.swing.JLabel();
+        textNomeUsuario = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        textCodigoUsuario = new javax.swing.JTextField();
+        buttonSalvar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+<<<<<<< Updated upstream
         itemPontoAvaliacaoVisualizacao = new javax.swing.JMenuItem();
+=======
+        itemAvaliacao = new javax.swing.JMenuItem();
+>>>>>>> Stashed changes
         jMenu1 = new javax.swing.JMenu();
         itemPontoTuristico = new javax.swing.JMenuItem();
         itemCidade = new javax.swing.JMenuItem();
@@ -36,6 +139,7 @@ public class frameMenu extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< Updated upstream
         jMenu2.setText("Home");
 
         itemPontoAvaliacaoVisualizacao.setText("Ponto Turísticos");
@@ -45,6 +149,84 @@ public class frameMenu extends javax.swing.JFrame {
             }
         });
         jMenu2.add(itemPontoAvaliacaoVisualizacao);
+=======
+        jLabel1.setText("Nome Ponto Turístico");
+
+        comboNomePontoTuristico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboNomePontoTuristico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNomePontoTuristicoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Endereço Ponto Turístico");
+
+        textEndereco.setEditable(false);
+
+        jLabel3.setText("Cidade Ponto Turístico");
+
+        jLabel4.setText("Estado Ponto Turístico");
+
+        textCidade.setEditable(false);
+
+        textEstado.setEditable(false);
+
+        jLabel5.setText("Valor Tarifa");
+
+        textTarifa.setEditable(false);
+
+        jLabel6.setText("Descrição Tarifa");
+
+        textAreaTarifa.setEditable(false);
+        textAreaTarifa.setColumns(20);
+        textAreaTarifa.setRows(5);
+        jScrollPane1.setViewportView(textAreaTarifa);
+
+        jLabel7.setText("Nota Ponto turístico");
+
+        comboNota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel8.setText("Média de Notas");
+
+        textMediaNotas.setEditable(false);
+
+        jLabel9.setText("Comentário");
+
+        textAreaComentario.setColumns(20);
+        textAreaComentario.setRows(5);
+        jScrollPane2.setViewportView(textAreaComentario);
+
+        jLabel10.setText("Comentários deste Ponto Turístico");
+
+        listComentario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(listComentario);
+
+        jLabel11.setText("Seu Nome");
+
+        jLabel12.setText("Dê uma nota e faça um comentário do ponto turístico selecionado");
+
+        jLabel13.setText("Código Usuario");
+
+        textCodigoUsuario.setEditable(false);
+
+        buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/diskette.png"))); // NOI18N
+        buttonSalvar.setText("Salvar");
+        buttonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonSalvarMouseClicked(evt);
+            }
+        });
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
+
+        jMenu2.setText("Home");
+
+        itemAvaliacao.setText("Avaliação");
+        jMenu2.add(itemAvaliacao);
+>>>>>>> Stashed changes
 
         jMenuBar1.add(jMenu2);
 
@@ -74,11 +256,123 @@ public class frameMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textEndereco))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textEstado)
+                            .addComponent(textCidade)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textMediaNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(comboNomePontoTuristico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(51, 51, 51)
+                        .addComponent(textNomeUsuario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(27, 27, 27)
+                                .addComponent(textCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboNota, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(buttonSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< Updated upstream
             .addGap(0, 394, Short.MAX_VALUE)
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(comboNomePontoTuristico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(textEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textMediaNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(textCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(textNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(comboNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(buttonSalvar)
+                .addContainerGap())
+>>>>>>> Stashed changes
         );
 
         pack();
@@ -99,10 +393,44 @@ public class frameMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
+<<<<<<< Updated upstream
     private void itemPontoAvaliacaoVisualizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPontoAvaliacaoVisualizacaoActionPerformed
         // TODO add your handling code here:
         new dialogPontoTuristicoVisualiazacao(this, true).setVisible(true);
     }//GEN-LAST:event_itemPontoAvaliacaoVisualizacaoActionPerformed
+=======
+    private void buttonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalvarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSalvarMouseClicked
+
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        // TODO add your handling code here:
+        if(textNomeUsuario.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nome obrigatório");
+            textNomeUsuario.requestFocus();
+            return;
+        }
+        try{
+            Avaliacao avaliacao = this.createAvaliacao(); //estou pegando oque tenho na tela e criando um objeto
+            if(textCodigoUsuario.getText().isEmpty()){  //testando se o registro é novo ou é um update
+                dao.create(avaliacao);
+                JOptionPane.showMessageDialog(null, "Avaliação salva.");
+            }else{ //uodate
+                dao.update(avaliacao);
+                JOptionPane.showMessageDialog(null, "Avaliação atualizada.");
+            }
+            //refresh após a ação
+            this.clearComponents(); // limpa os campos
+            this.loadList(); //recarrego a lista
+        }catch(Exception ex){
+
+        }
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void comboNomePontoTuristicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomePontoTuristicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNomePontoTuristicoActionPerformed
+>>>>>>> Stashed changes
 
 
     public static void main(String args[]) {
@@ -140,11 +468,42 @@ public class frameMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonSalvar;
+    private javax.swing.JComboBox<String> comboNomePontoTuristico;
+    private javax.swing.JComboBox<String> comboNota;
+    private javax.swing.JMenuItem itemAvaliacao;
     private javax.swing.JMenuItem itemCidade;
     private javax.swing.JMenuItem itemPontoAvaliacaoVisualizacao;
     private javax.swing.JMenuItem itemPontoTuristico;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JList listComentario;
+    private javax.swing.JTextArea textAreaComentario;
+    private javax.swing.JTextArea textAreaTarifa;
+    private javax.swing.JTextField textCidade;
+    private javax.swing.JTextField textCodigoUsuario;
+    private javax.swing.JTextField textEndereco;
+    private javax.swing.JTextField textEstado;
+    private javax.swing.JTextField textMediaNotas;
+    private javax.swing.JTextField textNomeUsuario;
+    private javax.swing.JTextField textTarifa;
     // End of variables declaration//GEN-END:variables
 }

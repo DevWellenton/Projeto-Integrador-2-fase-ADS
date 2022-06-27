@@ -7,7 +7,11 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+<<<<<<< Updated upstream
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+=======
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+>>>>>>> Stashed changes
   </SyntheticProperties>
   <Events>
     <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>

@@ -96,9 +96,15 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream
                               <Component id="textCodigo" min="-2" max="-2" attributes="0"/>
                               <Component id="textNome" min="-2" pref="454" max="-2" attributes="0"/>
                               <Component id="textEndereco" min="-2" pref="454" max="-2" attributes="0"/>
+=======
+                              <Component id="textNome" min="-2" pref="454" max="-2" attributes="0"/>
+                              <Component id="textEndereco" min="-2" pref="454" max="-2" attributes="0"/>
+                              <Component id="textCodigo" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
                           </Group>
                       </Group>
                   </Group>
@@ -204,6 +210,12 @@
               </StringArray>
             </Property>
           </Properties>
+<<<<<<< Updated upstream
+=======
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCidadeActionPerformed"/>
+          </Events>
+>>>>>>> Stashed changes
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

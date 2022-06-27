@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tarifas")
+@Table(name = "TARIFAS")
 public class Tarifa implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class Tarifa implements java.io.Serializable{
         this.descricao = descricao.trim().isEmpty()?"NODESCRIPTION":descricao.toUpperCase();
     }
     public void setValor(Double valor) {
-        this.valor = valor<0 ? 0 : valor;
+        this.valor = (valor<0||valor.isNaN()) ? 0 : valor;
     }
     public void setPontoTuristico(PontoTuristico pontoTuristico) {
         this.pontoTuristico = pontoTuristico;

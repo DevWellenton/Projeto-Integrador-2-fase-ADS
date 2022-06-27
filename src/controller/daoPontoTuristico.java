@@ -7,7 +7,11 @@ import model.PontoTuristico;
 
 public class daoPontoTuristico extends dao<PontoTuristico> {
     public List<PontoTuristico> read(){
+<<<<<<< Updated upstream
         String JPQL="select p from PontoTuristico p order by c.nome";
+=======
+        String JPQL="select p from PontoTuristico p order by p.nome";
+>>>>>>> Stashed changes
         return super.read(JPQL);
     }
     public List<PontoTuristico> read(String filtro){
