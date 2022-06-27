@@ -2,7 +2,10 @@
 package view;
 
 import controller.daoCidade;
+<<<<<<< Updated upstream
+=======
 import controller.daoPontoTuristico;
+>>>>>>> Stashed changes
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -132,6 +135,14 @@ public class dialogPontoTuristico extends javax.swing.JDialog {
         jLabel4.setText("CIDADE");
 
         comboCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+<<<<<<< Updated upstream
+=======
+        comboCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCidadeActionPerformed(evt);
+            }
+        });
+>>>>>>> Stashed changes
 
         jLabel5.setText("IMAGEM");
 
@@ -195,9 +206,15 @@ public class dialogPontoTuristico extends javax.swing.JDialog {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< Updated upstream
                             .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))))
+=======
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+>>>>>>> Stashed changes
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -394,6 +411,13 @@ public class dialogPontoTuristico extends javax.swing.JDialog {
         loadList();
     }//GEN-LAST:event_formWindowOpened
 
+<<<<<<< Updated upstream
+=======
+    private void comboCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCidadeActionPerformed
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */

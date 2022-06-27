@@ -1,7 +1,10 @@
 
 package view;
 
+<<<<<<< Updated upstream
+=======
 import controller.daoPontoTuristico;
+>>>>>>> Stashed changes
 import controller.daoTarifa;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -17,12 +20,20 @@ public class dialogTarifa extends javax.swing.JDialog {
     private void clearComponents(){
         textCodigo.setText(""); 
         textDescricao.setText("");
+<<<<<<< Updated upstream
         spinnerValorTarifa.setValue(1);
+=======
+        spinnerValorTarifa.setValue(0);
+>>>>>>> Stashed changes
         comboPontoTuristico.setSelectedIndex(0);
         textDescricao.requestFocus();
     }
     //3
+<<<<<<< Updated upstream
     private Tarifa create(){
+=======
+    private Tarifa createTarifa(){
+>>>>>>> Stashed changes
         return new Tarifa(textCodigo.getText().isEmpty()?0:Integer.parseInt(textCodigo.getText()),
                     textDescricao.getText(),
                     (Double)spinnerValorTarifa.getValue(),
@@ -40,14 +51,26 @@ public class dialogTarifa extends javax.swing.JDialog {
         DefaultComboBoxModel cbm = new DefaultComboBoxModel(new daoPontoTuristico().read().toArray()); //carrega a lista de estados do enum
         comboPontoTuristico.setModel(cbm);
     }
+<<<<<<< Updated upstream
+=======
+    private void filtroComboPontoTuristico(){
+        DefaultComboBoxModel cbm = new DefaultComboBoxModel(new daoPontoTuristico().read().toArray()); //carrega a lista de estados do enum
+        filtroComboPontoTuristico.setModel(cbm);
+    }
+>>>>>>> Stashed changes
     //6 Listando no Area texto
     private void loadList(){  //LISTANDO TUDO
         DefaultListModel lm = new DefaultListModel();
         lm.addAll(dao.read());
         listTarifa.setModel(lm);
+<<<<<<< Updated upstream
     }
     
     private void loadList(PontoTuristico pontoTuristico){  //LISTANDO APARTIR DE UM FILTRO ESTADO(ENUM)
+=======
+    }  
+    private void loadList(PontoTuristico pontoTuristico){  //LISTANDO APARTIR DE UM FILTRO
+>>>>>>> Stashed changes
         DefaultListModel lm = new DefaultListModel();
         lm.addAll(dao.read(pontoTuristico));
         listTarifa.setModel(lm);
@@ -315,6 +338,10 @@ public class dialogTarifa extends javax.swing.JDialog {
         );
 
         pack();
+<<<<<<< Updated upstream
+=======
+        setLocationRelativeTo(null);
+>>>>>>> Stashed changes
     }// </editor-fold>//GEN-END:initComponents
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
@@ -330,9 +357,14 @@ public class dialogTarifa extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Descrição obrigatória");
             textDescricao.requestFocus();
             return;
+<<<<<<< Updated upstream
         }
         try{
             Tarifa tarifa = this.create(); //estou pegando oque tenho na tela e criando um objeto
+=======
+        }        try{
+            Tarifa tarifa = this.createTarifa(); //estou pegando oque tenho na tela e criando um objeto
+>>>>>>> Stashed changes
             if(textCodigo.getText().isEmpty()){  //testando se o registro é novo ou é um update
                 dao.create(tarifa);
                 JOptionPane.showMessageDialog(null, "Tarifa Cadastrada.");
@@ -379,6 +411,10 @@ public class dialogTarifa extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+<<<<<<< Updated upstream
+=======
+        filtroComboPontoTuristico();
+>>>>>>> Stashed changes
         loadComboPontoTuristico();
         loadList();
     }//GEN-LAST:event_formWindowOpened
