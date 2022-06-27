@@ -32,9 +32,7 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
         textCidade.setText("");
         textEstado.setText("");
         textTarifa.setText("");
-        textAreaTarifa.setText("");
         comboNota.setSelectedIndex(0);
-        textMediaNotas.setText("");
         textAreaComentario.setText("");
         
     }

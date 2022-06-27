@@ -1,6 +1,7 @@
 
 package view;
 
+import controller.daoPontoTuristico;
 import controller.daoTarifa;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;

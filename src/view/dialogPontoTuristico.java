@@ -2,6 +2,7 @@
 package view;
 
 import controller.daoCidade;
+import controller.daoPontoTuristico;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
