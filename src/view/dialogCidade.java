@@ -347,7 +347,7 @@ public class dialogCidade extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        this.loadComboEstado();;
+        this.loadComboEstado();
         this.loadList();
     }//GEN-LAST:event_formWindowOpened
 
