@@ -8,7 +8,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Avaliacao;
+import model.Cidade;
 import model.PontoTuristico;
+import model.Tarifa;
 
 public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
 
@@ -47,12 +49,13 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
         );
     }
     //4-atualiza componentes de tela
-    private void fillComponents(Avaliacao avaliacao){
-        textCodigoUsuario.setText(avaliacao.getId()+"");
-        comboNomePontoTuristico.setSelectedItem(avaliacao.getPontoTuristico());
-        textNomeUsuario.setText(avaliacao.getNomeUsuario());
-        comboNota.setSelectedItem(avaliacao.getNota());
-        textAreaComentario.setText(avaliacao.getDescricao());
+    private void fillComponents(PontoTuristico pontoTuristico, Tarifa tarifa){
+        comboNomePontoTuristico.setSelectedItem(pontoTuristico.getNome());
+        textEndereco.setText(pontoTuristico.getEndereco());
+        textCidade.setText(pontoTuristico.getCidade().toString());
+        //textEstado.setText(Cidade.getEstado().toString());
+        textTarifa.setText(tarifa.getValor().toString());
+        
     }
     //5-carregar combos
     private void loadComboNomePontoTuristico(){
@@ -93,11 +96,11 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         textTarifa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaTarifa = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listComentario = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listDescricaoTarifa = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -149,15 +152,13 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
 
         jLabel6.setText("Descrição Tarifa");
 
-        textAreaTarifa.setEditable(false);
-        textAreaTarifa.setColumns(20);
-        textAreaTarifa.setRows(5);
-        jScrollPane1.setViewportView(textAreaTarifa);
-
         jLabel10.setText("Comentários deste Ponto Turístico");
 
         listComentario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(listComentario);
+
+        listDescricaoTarifa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(listDescricaoTarifa);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,23 +168,10 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(22, 22, 22)
                         .addComponent(comboNomePontoTuristico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -193,7 +181,18 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textEstado)
                             .addComponent(textCidade)
-                            .addComponent(textEndereco))))
+                            .addComponent(textEndereco)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(textTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4)))
+                    .addComponent(jLabel10))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,10 +221,10 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -438,12 +437,12 @@ public class dialogPontoTuristicoVisualiazacao extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JList listComentario;
+    private javax.swing.JList listDescricaoTarifa;
     private javax.swing.JTextArea textAreaComentario;
-    private javax.swing.JTextArea textAreaTarifa;
     private javax.swing.JTextField textCidade;
     private javax.swing.JTextField textCodigoUsuario;
     private javax.swing.JTextField textEndereco;
